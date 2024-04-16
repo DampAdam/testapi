@@ -49,7 +49,6 @@ botocore==1.31.54
 Bottleneck @ file:///C:/b/abs_f05kqh7yvj/croot/bottleneck_1707864273291/work
 Brotli @ file:///C:/ci_311/brotli-split_1676435766766/work
 cachetools @ file:///tmp/build/80754af9/cachetools_1619597386817/work
-certifi==2023.7.22
 cffi @ file:///C:/b/abs_924gv1kxzj/croot/cffi_1700254355075/work
 chardet @ file:///C:/ci_311/chardet_1676436134885/work
 charset-normalizer @ file:///tmp/build/80754af9/charset-normalizer_1630003229654/work
