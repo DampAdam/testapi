@@ -29,8 +29,8 @@ def getScreenTExt():
         try:
             filename = secure_filename(file.filename)
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            # we need to print all folders
-            for f in os.listdir(app.config['UPLOAD_FOLDER']):
+            # we need to print all the folders that are on the same level as the script
+            for f in os.listdir():
                 print(f)
             print("savuju")
             file.save(filepath)
