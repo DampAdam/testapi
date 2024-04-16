@@ -30,6 +30,9 @@ def getScreenTExt():
             filename = secure_filename(file.filename)
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(filepath)
+            # we need to print all images in the folder
+            for f in os.listdir(app.config['UPLOAD_FOLDER']):
+                print(f)
             predictions = CLIENT.infer(filepath, model_id="dpdtextrecognition/3")['predictions']
             if len(predictions) == 0:
                 return jsonify({"error": "No text detected"}), 400
