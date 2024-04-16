@@ -29,7 +29,9 @@ def getScreenTExt():
         try:
             filename = secure_filename(file.filename)
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            print("savuju")
             file.save(filepath)
+            print("nene")
             # we need to print all images in the folder
             for f in os.listdir(app.config['UPLOAD_FOLDER']):
                 print(f)
