@@ -61,5 +61,5 @@ def process_image(image_path):
     return {"message": f"Processed image saved at {image_path}"}
 
 if __name__ == '__main__':
-    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+    os.makedirs(app.config['UPLOAD_FOLDER'])
     app.run(debug=True)
