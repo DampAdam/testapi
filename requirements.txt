@@ -1,2 +1,9 @@
 Flask==2.2.5
-gunicorn==21.2.0
+Flask_Cors==4.0.0
+inference==0.9.17
+inference_gpu==0.9.17
+opencv_python==4.8.0.76
+opencv_python_headless==4.9.0.80
+pytesseract==0.3.10
+roboflow==1.1.27
+Werkzeug==2.2.3
