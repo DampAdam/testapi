@@ -26,19 +26,22 @@ def getScreenTExt():
     if file.filename == '':
         return jsonify({"error": "No selected file"}), 400
     if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(filepath)
-        predictions = CLIENT.infer(filepath, model_id="dpdtextrecognition/3")['predictions']
-        if len(predictions) == 0:
-            return jsonify({"error": "No text detected"}), 400
-        x, y, width, height, conf = int(predictions[0]['x']), int(predictions[0]['y']), int(predictions[0]['width']), int(predictions[0]['height']), predictions[0]['confidence']
-        x0 = int(x - width/2)
-        y0 = int(y - height/2)
-        x1 = x0+width
-        y1 = y0+height
-        text = pt.image_to_string(cv2.imread(filepath)[y0:y1, x0:x1], config='--psm 6 --oem 3')
-        return jsonify({"x0": x0, "y0": y0, "x1": x1, "y1": y1, "text": text, "confidence": conf})
+        try:
+            filename = secure_filename(file.filename)
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(filepath)
+            predictions = CLIENT.infer(filepath, model_id="dpdtextrecognition/3")['predictions']
+            if len(predictions) == 0:
+                return jsonify({"error": "No text detected"}), 400
+            x, y, width, height, conf = int(predictions[0]['x']), int(predictions[0]['y']), int(predictions[0]['width']), int(predictions[0]['height']), predictions[0]['confidence']
+            x0 = int(x - width/2)
+            y0 = int(y - height/2)
+            x1 = x0+width
+            y1 = y0+height
+            text = pt.image_to_string(cv2.imread(filepath)[y0:y1, x0:x1], config='--psm 6 --oem 3')
+            return jsonify({"x0": x0, "y0": y0, "x1": x1, "y1": y1, "text": text, "confidence": conf})
+        except Exception as e:
+            return jsonify({"error": str(e)}), 400
     else:
         return jsonify({"error": "Invalid file type"}), 400
 
